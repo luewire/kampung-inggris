@@ -16,8 +16,8 @@ import {
   Check,
   Clock
 } from "lucide-react";
-import heroImage from "@/assets/students-conversation.png";
-import studentsImage from "@/assets/hero-students.png";
+import heroImage from "@/assets/students-conversation.webp";
+import studentsImage from "@/assets/hero-students.webp";
 import { Link } from "react-scroll";
 
 const packages = [
