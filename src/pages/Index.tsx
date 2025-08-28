@@ -269,10 +269,10 @@ const Index = () => {
   {/* Program Section */}
 <section id="program" name="program" className="py-20 px-6 bg-[#E6E0D6]">
   <div className="max-w-7xl mx-auto">
-    <h2 className="text-3xl md:text-4xl font-bold text-center text-[#3D3D3D] mb-4">
+    <h2 className="text-3xl md:text-4xl font-bold text-center text-[#5B362B] mb-4">
       Program Pembelajaran Kami
     </h2>
-    <p className="text-lg text-[#5A5A5A] text-center mb-16 max-w-3xl mx-auto">
+    <p className="text-lg text-[#3D2B25] text-center mb-16 max-w-3xl mx-auto">
       Program terstruktur yang dirancang untuk memaksimalkan kemampuan bahasa Inggris anda
     </p>
 
@@ -308,10 +308,10 @@ const Index = () => {
               {item.icon}
             </div>
             <div>
-              <h3 className="text-base font-semibold text-[#3D3D3D] mb-1">
+              <h3 className="text-base font-semibold text-[#5B362B] mb-1">
                 {item.title}
               </h3>
-              <p className="text-sm text-gray-600">{item.desc}</p>
+              <p className="text-sm text-[#5B362B]">{item.desc}</p>
             </div>
           </CardContent>
         </Card>
