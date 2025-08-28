@@ -267,7 +267,7 @@ const Index = () => {
       </section>
 
   {/* Program Section */}
-<section id="program" name="program" className="py-20 px-6 bg-[#E6E0D6]">
+<section id="program" name="program" className="py-20 px-6 bg-[#E6D8C4]">
   <div className="max-w-7xl mx-auto">
     <h2 className="text-3xl md:text-4xl font-bold text-center text-[#5B362B] mb-4">
       Program Pembelajaran Kami
@@ -304,7 +304,7 @@ const Index = () => {
           className="p-6 rounded-xl bg-[#FFFFFC] shadow-md border border-gray-100"
         >
           <CardContent className="flex items-start gap-4">
-            <div className="bg-[#8FA683] p-3 rounded-lg flex items-center justify-center">
+            <div className="bg-[#6D8A59] p-3 rounded-lg flex items-center justify-center">
               {item.icon}
             </div>
             <div>
@@ -322,7 +322,7 @@ const Index = () => {
 
 
   {/* Pricing Section */}
-      <section id="paket" name="paket" className="py-20 px-6 bg-[#737C63]">
+      <section id="paket" name="paket" className="py-20 px-6 bg-[#6D8A59]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-4">
             Paket Pembelajaran Kami
