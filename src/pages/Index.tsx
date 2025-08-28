@@ -13,11 +13,75 @@ import {
   BookOpenCheck,
   GraduationCap,
   Award,
-  Check
+  Check,
+  Clock
 } from "lucide-react";
 import heroImage from "@/assets/students-conversation.png";
 import studentsImage from "@/assets/hero-students.png";
 import { Link } from "react-scroll";
+
+const packages = [
+  {
+    name: "Paket Starter",
+    description: "Cocok untuk pemula yang ingin memulai perjalanan bahasa Inggris",
+    price: "1.500.000",
+    originalPrice: "2.000.000",
+    features: [
+      { icon: Clock, text: "4 Minggu" },
+      { icon: Users, text: "Max 15 siswa" },
+    ],
+    isBestSeller: false,
+    primaryAction: {
+      text: "Daftar Sekarang",
+      link: "https://api.whatsapp.com/send?phone=6282137984673&text=Saya%20ingin%20mendaftar%20paket%20Starter",
+      className: "bg-[#8FA683] hover:bg-[#7d8f73] text-white"
+    },
+    secondaryAction: {
+        text: "Garansi 1 Bulan Bisa",
+        className: "bg-transparent border-[#8FA683] text-[#5A382D] hover:bg-white/50"
+    }
+  },
+  {
+    name: "Paket Reguler",
+    description: "Program terpopuler untuk menguasai bahasa Inggris dengan percaya diri",
+    price: "2.800.000",
+    originalPrice: "3.500.000",
+    features: [
+      { icon: Clock, text: "4 Minggu" },
+      { icon: Users, text: "Max 15 siswa" },
+    ],
+    isBestSeller: true,
+    primaryAction: {
+      text: "Daftar Sekarang",
+      link: "https://api.whatsapp.com/send?phone=6282137984673&text=Saya%20ingin%20mendaftar%20paket%20Regular",
+      className: "bg-[#5A382D] hover:bg-[#492e24] text-white"
+    },
+    secondaryAction: {
+        text: "Garansi 1 Bulan Bisa",
+        className: "bg-transparent border-[#8FA683] text-[#5A382D] hover:bg-white/50"
+    }
+  },
+  {
+    name: "Paket Intensive",
+    description: "Program terfokus untuk menguasai bahasa Inggris dengan percaya diri",
+    price: "4.200.000",
+    originalPrice: "5.000.000",
+    features: [
+      { icon: Clock, text: "4 Minggu" },
+      { icon: Users, text: "Max 10 siswa" },
+    ],
+    isBestSeller: false,
+    primaryAction: {
+      text: "Daftar Sekarang",
+      link: "https://api.whatsapp.com/send?phone=6282137984673&text=Saya%20ingin%20mendaftar%20paket%20Intensive",
+      className: "bg-[#8FA683] hover:bg-[#7d8f73] text-white"
+    },
+    secondaryAction: {
+        text: "Garansi 1 Bulan Bisa",
+        className: "bg-transparent border-[#8FA683] text-[#5A382D] hover:bg-white/50"
+    }
+  }
+];
 
 const Index = () => {
   return (
@@ -65,7 +129,7 @@ const Index = () => {
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
                 Kuasai Bahasa Inggris di{" "}
-                <span className="text-accent">Kampung Inggris Jogja</span>
+                <span className="text-accent">Kampung Inggris Indonesia</span>
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
                 Bergabunglah dengan program pembelajaran bahasa Inggris intensif di lingkungan yang mendukung, 
@@ -107,7 +171,7 @@ const Index = () => {
    <section id="benefit" name="benefit" className="py-20 px-6 bg-[#FFFFFC]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-16">
-            Kenapa Harus Kampung Inggris Jogja by PARE?
+            Kenapa Harus Kampung Inggris Indonesia?
           </h2>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -159,7 +223,7 @@ const Index = () => {
      <section id="benefit" name="benefit" className="py-20 px-6 bg-[#FFFFFC]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-4">
-            Mengapa Memilih Kampung Inggris Jogja?
+            Mengapa Memilih Kampung Inggris Indonesia?
           </h2>
           <p className="text-lg text-muted-foreground text-center mb-16 max-w-3xl mx-auto">
             Kami menyediakan lingkungan pembelajaran yang optimal untuk mengembangkan kemampuan bahasa Inggris Anda
@@ -202,48 +266,53 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Program Section */}
-<section id="program" name="program" className="py-20 px-6 bg-card">
+  {/* Program Section */}
+<section id="program" name="program" className="py-20 px-6 bg-[#E6E0D6]">
   <div className="max-w-7xl mx-auto">
-    <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-4">
+    <h2 className="text-3xl md:text-4xl font-bold text-center text-[#3D3D3D] mb-4">
       Program Pembelajaran Kami
     </h2>
-    <p className="text-lg text-muted-foreground text-center mb-16 max-w-3xl mx-auto">
-      Program terstruktur yang dirancang untuk memaksimalkan kemampuan bahasa Inggris Anda
+    <p className="text-lg text-[#5A5A5A] text-center mb-16 max-w-3xl mx-auto">
+      Program terstruktur yang dirancang untuk memaksimalkan kemampuan bahasa Inggris anda
     </p>
-    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+    <div className="grid md:grid-cols-2 gap-6">
       {[
         {
-          icon: <MessageCircle className="h-6 w-6" />,
+          icon: <MessageCircle className="h-6 w-6 text-white" />,
           title: "Daily Speaking Classes",
-          desc: "Kelas speaking intensif setiap hari untuk meningkatkan kemampuan berbicara"
+          desc: "Kelas speaking intensif setiap hari untuk meningkatkan kepercayaan diri"
         },
         {
-          icon: <BookOpenCheck className="h-6 w-6" />,
+          icon: <BookOpenCheck className="h-6 w-6 text-white" />,
           title: "Grammar Workshops",
-          desc: "Workshop grammar komprehensif untuk memperkuat struktur bahasa"
+          desc: "Workshop grammar komprehensif untuk memperkuat dasar bahasa"
         },
         {
-          icon: <Users className="h-6 w-6" />,
+          icon: <Users className="h-6 w-6 text-white" />,
           title: "Cultural Immersion Events",
           desc: "Acara budaya mingguan untuk praktek bahasa dalam konteks nyata"
         },
         {
-          icon: <Award className="h-6 w-6" />,
+          icon: <Award className="h-6 w-6 text-white" />,
           title: "Certification Program",
-          desc: "Sertifikat resmi sebagai pengakuan program pembelajaran"
+          desc: "Sertifikat resmi setelah menyelesaikan program pembelajaran"
         }
       ].map((item, i) => (
         <Card
           key={i}
-          className="p-6 rounded-xl bg-[#FFFFFC] dark:bg-neutral-900 shadow-sm hover:shadow-lg transition-all duration-300"
+          className="p-6 rounded-xl bg-[#FFFFFC] shadow-md border border-gray-100"
         >
-          <CardContent className="space-y-4">
-            <div className="bg-accent text-accent-foreground p-3 rounded-lg w-12 h-12 flex items-center justify-center">
+          <CardContent className="flex items-start gap-4">
+            <div className="bg-[#8FA683] p-3 rounded-lg flex items-center justify-center">
               {item.icon}
             </div>
-            <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
-            <p className="text-sm text-muted-foreground">{item.desc}</p>
+            <div>
+              <h3 className="text-base font-semibold text-[#3D3D3D] mb-1">
+                {item.title}
+              </h3>
+              <p className="text-sm text-gray-600">{item.desc}</p>
+            </div>
           </CardContent>
         </Card>
       ))}
@@ -252,194 +321,69 @@ const Index = () => {
 </section>
 
 
-{/* Pricing Section */}
-<section id="paket" name="paket" className="py-20 px-6 bg-accent">
-  <div className="max-w-7xl mx-auto">
-    <h2 className="text-3xl md:text-4xl font-bold text-center text-accent-foreground mb-4">
-      Paket Pembelajaran Kami
-    </h2>
-    <p className="text-lg text-accent-foreground/80 text-center mb-16 max-w-3xl mx-auto">
-      Beragam pilihan paket yang fleksibel dan terjangkau untuk mendukung proses belajar bahasa Inggris sesuai kebutuhan dan tujuan Anda
-    </p>
-    <div className="grid md:grid-cols-3 gap-8">
-      {/* Starter Package */}
-      <Card className="relative p-8 bg-background border-2 border-border hover:shadow-xl transition-all duration-300">
-        <CardContent className="space-y-6">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-foreground mb-2">Paket Starter</h3>
-            <p className="text-sm text-muted-foreground mb-4">Cocok untuk yang baru memulai belajar bahasa Inggris</p>
-            <span className="text-sm text-muted-foreground line-through">Rp 2.000.000</span>
-            <div className="text-4xl font-bold text-foreground mb-2">Rp 1.500.000</div>
-            <p className="text-sm text-muted-foreground">per program</p>
-          </div>
-          <div className="space-y-3">
-            {["4 Minggu", "Max 15 orang", "Garansi 1 Bulan Bisa"].map((benefit, i) => (
-              <div key={i} className="flex items-center space-x-3">
-                <Check className="h-5 w-5 text-accent" />
-                <span className="text-sm text-foreground">{benefit}</span>
-              </div>
-            ))}
-          </div>
-       <Button
-  asChild
-  variant="outline"
-  className="w-full"
->
-  <a
-    href="https://api.whatsapp.com/send?phone=6282137984673&text=Saya%20ingin%20mendaftar%20paket%20Starter"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Daftar Sekarang
-  </a>
-</Button>
-
-<Button
-  asChild
-  variant="link"
-  className="w-full text-sm"
->
-  <a
-    href="https://api.whatsapp.com/send?phone=6282137984673&text=Saya%20ingin%20berkonsultasi%20tentang%20paket%20Starter"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Konsultasi Paket Starter
-  </a>
-</Button>
-
-        </CardContent>
-      </Card>
-
-      {/* Regular Package */}
-<Card className="relative p-8 bg-background border-1 border-accent rounded-lg hover:shadow-xl transition-all duration-300 transform scale-105">
-  <div className="absolute top-0 right-0 pointer-events-none">
-    <Badge
-      className="bg-[#5A382D] text-[#FFFFFC] px-3 py-1 rounded-tl-lg text-xs font-semibold"
-    >
-      Best Seller
-    </Badge>
+  {/* Pricing Section */}
+      <section id="paket" name="paket" className="py-20 px-6 bg-[#737C63]">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-4">
+            Paket Pembelajaran Kami
+          </h2>
+          <p className="text-lg text-white/80 text-center mb-16 max-w-3xl mx-auto">
+            Beragam pilihan paket yang fleksibel dan terjangkau untuk mendukung proses belajar bahasa Inggris sesuai kebutuhan dan tujuan anda
+          </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
+            {packages.map((pkg, index) => (
+              <Card key={index} className={`relative bg-[#FAF8F2] rounded-3xl border-none shadow-lg transition-all duration-300 ${pkg.isBestSeller ? 'md:scale-105' : ''}`}>
+                {pkg.isBestSeller && (
+                  <div className="absolute top-0 right-0 rounded-bl-2xl rounded-tr-3xl bg-[#5A382D] text-white px-4 py-1.5 text-sm font-semibold">
+    Best Seller
   </div>
+                )}
+                <CardContent className="p-8 text-center flex flex-col h-full">
+                  <div className="flex-grow">
+                      <h3 className="text-2xl font-bold text-[#3D3D3D] mb-2">{pkg.name}</h3>
+                      <p className="text-sm text-gray-500 mb-6 h-10">{pkg.description}</p>
+                      
+                    <div className="flex justify-center items-baseline gap-2 mb-6">
+  <span className="text-lg text-gray-400 line-through">Rp {pkg.originalPrice}</span>
+  <span className="text-lg font-bold text-[#3D3D3D]">Rp {pkg.price}</span>
+</div>
 
-        <CardContent className="space-y-6">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-foreground mb-2">Paket Regular</h3>
-            <p className="text-sm text-muted-foreground mb-4">Cocok untuk yang ingin belajar dengan intensitas menengah</p>
-            <div className="mb-2 flex flex-col items-center">
-              <span className="text-sm text-muted-foreground line-through">Rp 3.500.000</span>
-              <span className="text-4xl font-bold text-foreground">Rp 2.800.000</span>
-            </div>
-            <p className="text-sm text-muted-foreground">per program</p>
-          </div>
-          <div className="space-y-3">
-            {["4 Minggu", "Max 15 orang", "Garansi 1 Bulan Bisa"].map((benefit, i) => (
-              <div key={i} className="flex items-center space-x-3">
-                <Check className="h-5 w-5 text-accent" />
-                <span className="text-sm text-foreground">{benefit}</span>
-              </div>
+
+                      <div className="space-y-4 text-left my-8">
+                          {pkg.features.map((feature, i) => (
+                          <div key={i} className="flex items-center space-x-3">
+                              <feature.icon className="h-5 w-5 text-[#8FA683]" />
+                              <span className="text-md text-gray-700">{feature.text}</span>
+                          </div>
+                          ))}
+                      </div>
+                  </div>
+
+                  <div className="mt-auto space-y-3">
+                      <Button asChild size="lg" className={`w-full rounded-full font-semibold text-base py-6 ${pkg.primaryAction.className}`}>
+                          <a href={pkg.primaryAction.link} target="_blank" rel="noopener noreferrer">
+                              {pkg.primaryAction.text}
+                          </a>
+                      </Button>
+                      <Button size="lg" variant="outline" className={`w-full rounded-full font-semibold text-base py-6 border-2 ${pkg.secondaryAction.className}`}>
+                          {pkg.secondaryAction.text}
+                      </Button>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
-        <Button
-  asChild
-  variant="cta"
-  className="w-full"
->
-  <a
-    href="https://api.whatsapp.com/send?phone=6282137984673&text=Saya%20ingin%20mendaftar%20paket%20Regular"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Daftar Sekarang
-  </a>
-</Button>
 
-<Button
-  asChild
-  variant="link"
-  className="w-full text-sm"
->
-  <a
-    href="https://api.whatsapp.com/send?phone=6282137984673&text=Saya%20ingin%20berkonsultasi%20tentang%20paket%20Regular"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Konsultasi Paket Regular
-  </a>
-</Button>
-
-        </CardContent>
-      </Card>
-
-      {/* Intensive Package */}
-      <Card className="relative p-8 bg-background border-2 border-border hover:shadow-xl transition-all duration-300">
-        <CardContent className="space-y-6">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-foreground mb-2">Paket Intensive</h3>
-            <p className="text-sm text-muted-foreground mb-4">Cocok untuk yang ingin belajar dengan intensitas tinggi</p>
-            <span className="text-sm text-muted-foreground line-through">Rp 5.000.000</span>
-            <div className="text-4xl font-bold text-foreground mb-2">Rp 4.200.000</div>
-            <p className="text-sm text-muted-foreground">per program</p>
+          <div className="text-center mt-20">
+            <p className="text-white text-lg mb-4">Masih bingung memilih paket yang tepat?</p>
+            <Button asChild variant="outline" size="lg" className="bg-[#FAF8F2] text-[#5A382D] border-none hover:bg-white rounded-full font-semibold py-6 px-8">
+              <a href="https://api.whatsapp.com/send?phone=6282137984673&text=Saya%20ingin%20berkonsultasi%20tentang%20paket" target="_blank" rel="noopener noreferrer">
+                  Konsultasi Gratis Sekarang
+              </a>
+            </Button>
           </div>
-          <div className="space-y-3">
-            {["4 Minggu", "Max 10 orang", "Garansi 1 Bulan Bisa"].map((benefit, i) => (
-              <div key={i} className="flex items-center space-x-3">
-                <Check className="h-5 w-5 text-accent" />
-                <span className="text-sm text-foreground">{benefit}</span>
-              </div>
-            ))}
-          </div>
-        <Button
-  asChild
-  variant="outline"
-  className="w-full"
->
-  <a
-    href="https://api.whatsapp.com/send?phone=6282137984673&text=Saya%20ingin%20mendaftar%20paket%20Intensive"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Daftar Sekarang
-  </a>
-</Button>
-
-<Button
-  asChild
-  variant="link"
-  className="w-full text-sm"
->
-  <a
-    href="https://api.whatsapp.com/send?phone=6282137984673&text=Saya%20ingin%20berkonsultasi%20tentang%20paket%20Intensive"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Konsultasi Paket Intensive
-  </a>
-</Button>
-
-
-        </CardContent>
-      </Card>
-    </div>
-
-    <div className="text-center mt-12">
-      <p className="text-accent-foreground mb-6">Masih bingung memilih paket yang tepat?</p>
-     <a
-  href="https://api.whatsapp.com/send?phone=6282137984673&text=Saya%20ingin%20berkonsultasi%20tentang%20paket"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <Button
-    variant="outline"
-    size="lg"
-    className="bg-background text-foreground border-background hover:bg-background/90"
-  >
-    Konsultasi Gratis Sekarang
-  </Button>
-</a>
-
-    </div>
-  </div>
-</section>
+        </div>
+      </section>
 
 
       {/* Footer */}
@@ -447,7 +391,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
           <div className="space-y-4">
             <div className="flex items-center space-x-2 mb-6">
-              <span className="text-2xl font-bold">Kampung Inggris Jogja</span>
+              <span className="text-2xl font-bold">Kampung Inggris Indonesia</span>
             </div>
             <p className="text-primary-foreground/80 leading-relaxed">
               Tempat terbaik untuk belajar bahasa Inggris dengan suasana budaya Jogja yang khas. 
@@ -492,7 +436,7 @@ const Index = () => {
         </div>
         <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-primary-foreground/20 text-center">
           <p className="text-primary-foreground/60">
-            © 2025 Kampung Inggris Jogja. All rights reserved.
+            © 2025 Kampung Inggris Indonesia. All rights reserved.
           </p>
         </div>
       </footer>
