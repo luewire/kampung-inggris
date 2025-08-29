@@ -394,9 +394,7 @@ const Index = () => {
               <span className="text-2xl font-bold">Kampung Inggris Indonesia</span>
             </div>
             <p className="text-primary-foreground/80 leading-relaxed">
-              Tempat terbaik untuk belajar bahasa Inggris dengan suasana budaya Jogja yang khas. 
-              Bergabunglah dengan komunitas pembelajar bahasa Inggris yang supportif dan sah dengan tutor 
-              yang berpengalaman di Jogja.
+              Tempat terbaik untuk belajar bahasa Inggris dengan suasana budaya Jogja yang khas. Bergabunglah dengan komunitas pembelajar yang supportif dan raih impian Anda.
             </p>
           </div>
           <div className="space-y-4">
