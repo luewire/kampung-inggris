@@ -427,10 +427,7 @@ const Index = () => {
           <div className="space-y-4">
             <h3 className="text-xl font-semibold mb-6">Kontak Kami</h3>
             <div className="space-y-3 text-primary-foreground/80">
-              <p>📍 bandul</p>
-              <p>📞 1234</p>
-              <p>✉️ info@kampunginggrisindonesia</p>
-              <p>🌐 www.kampunginggrisindonesia.com</p>
+             
             </div>
           </div>
         </div>
