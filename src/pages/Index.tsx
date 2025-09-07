@@ -121,7 +121,6 @@ const Index = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   // WhatsApp widget state
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [showWATooltip, setShowWATooltip] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -149,7 +148,6 @@ const Index = () => {
   const handleFABClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setIsChatOpen(true);
-    setShowWATooltip(false);
   };
 
   const closeChatWidget = () => setIsChatOpen(false);
@@ -629,15 +627,7 @@ const Index = () => {
         </div>
       </footer>
 
-      {/* Tooltip bubble next to FAB */}
-      {showWATooltip && !isChatOpen && (
-        <div className="fixed bottom-24 right-6 z-50 select-none pointer-events-none">
-          <div className="relative bg-white text-gray-800 rounded-full shadow px-3 py-1.5 text-sm font-medium">
-            Konsultasi Sekarang!
-            <span className="absolute -right-1 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rotate-45 shadow" />
-          </div>
-        </div>
-      )}
+  {/* Tooltip removed as requested */}
 
       {/* Chat widget (full on mobile, panel on desktop) */}
       {isChatOpen && (
