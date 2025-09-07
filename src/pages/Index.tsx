@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import heroImage from "@/assets/students-conversation.webp";
 import studentsImage from "@/assets/hero-students.webp";
-import { Link } from "react-scroll";
+import { Link, Element } from "react-scroll";
 
 const packages = [
   {
@@ -31,17 +31,14 @@ const packages = [
     originalPrice: "2.000.000",
     features: [
       { icon: Clock, text: "2 Minggu" },
-      { icon: Users, text: "Max 15 siswa" },
+      { icon: Users, text: "15 member" },
     ],
     primaryAction: {
       text: "Daftar Sekarang",
       link: "https://api.whatsapp.com/send?phone=6282137984673&text=Saya%20ingin%20mendaftar%20Paket%202%20Minggu",
       className: "bg-[#8FA683] hover:bg-[#7d8f73] text-white"
     },
-    secondaryAction: {
-        text: "Garansi 1 Bulan Bisa",
-        className: "bg-transparent border-[#8FA683] text-[#5A382D] hover:bg-white/50"
-    }
+    // Garansi hanya untuk 2 bulan ke atas
   },
   {
     name: "Paket 1 Bulan",
@@ -50,17 +47,14 @@ const packages = [
     originalPrice: "3.000.000",
     features: [
       { icon: Clock, text: "4 Minggu" },
-      { icon: Users, text: "Max 15 siswa" },
+      { icon: Users, text: "15 member" },
     ],
     primaryAction: {
       text: "Daftar Sekarang",
       link: "https://api.whatsapp.com/send?phone=6282137984673&text=Saya%20ingin%20mendaftar%20Paket%201%20Bulan",
       className: "bg-[#8FA683] hover:bg-[#7d8f73] text-white"
     },
-    secondaryAction: {
-        text: "Garansi 1 Bulan Bisa",
-        className: "bg-transparent border-[#8FA683] text-[#5A382D] hover:bg-white/50"
-    }
+    // Garansi hanya untuk 2 bulan ke atas
   },
   {
     name: "Paket 2 Bulan",
@@ -69,7 +63,7 @@ const packages = [
     originalPrice: "5.000.000",
     features: [
       { icon: Clock, text: "8 Minggu" },
-      { icon: Users, text: "Max 15 siswa" },
+      { icon: Users, text: "15 member" },
     ],
     primaryAction: {
       text: "Daftar Sekarang",
@@ -88,7 +82,7 @@ const packages = [
     originalPrice: "9.000.000",
     features: [
       { icon: Clock, text: "12 Minggu (+ 1 bulan gratis)" },
-      { icon: Users, text: "Max 15 siswa" },
+      { icon: Users, text: "15 member" },
     ],
     primaryAction: {
       text: "Daftar Sekarang",
@@ -107,7 +101,7 @@ const packages = [
     originalPrice: "18.000.000",
     features: [
       { icon: Clock, text: "24 Minggu (+ 3 bulan gratis)" },
-      { icon: Users, text: "Max 15 siswa" },
+      { icon: Users, text: "15 member" },
     ],
     primaryAction: {
       text: "Daftar Sekarang",
@@ -125,6 +119,9 @@ const Index = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  // WhatsApp widget state
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [showWATooltip, setShowWATooltip] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -147,6 +144,22 @@ const Index = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
+
+  // Floating button -> open chat widget first
+  const handleFABClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsChatOpen(true);
+    setShowWATooltip(false);
+  };
+
+  const closeChatWidget = () => setIsChatOpen(false);
+
+  const openWhatsApp = () => {
+    const message = "Halo, saya ingin bertanya tentang program Kampung Inggris Indonesia";
+    const url = `https://api.whatsapp.com/send?phone=6282137984673&text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+    setIsChatOpen(false);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -272,7 +285,8 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-     <section id="tentang" name="tentang" className="py-20 px-6 bg-[#ECE2D2] mt-20">
+  <Element name="tentang">
+  <section id="tentang" className="py-20 px-6 bg-[#ECE2D2] mt-20">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="space-y-4">
@@ -308,16 +322,18 @@ const Index = () => {
                 </div>
                 <div>
                   <div className="font-semibold text-foreground">GARANSI</div>
-                  <div className="text-sm text-muted-foreground">1 Bulan Bisa Ngomong</div>
+                  <div className="text-sm text-muted-foreground">1 Bulan Bisa Speaking</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+  </section>
+  </Element>
 
       {/* Why Choose Section */}
-   <section id="benefit" name="benefit" className="py-20 px-6 bg-[#FFFFFC]">
+  <Element name="benefit">
+  <section id="benefit" className="py-20 px-6 bg-[#FFFFFC]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-16">
             Kenapa Harus Kampung Inggris Indonesia?
@@ -352,24 +368,15 @@ const Index = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex items-start space-x-4">
-                <div className="bg-accent text-accent-foreground p-3 rounded-full flex-shrink-0">
-                  <MessageCircle className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">Bisa Langsung Latihan Sama Bule</h3>
-                  <p className="text-muted-foreground">
-                    Praktik langsung dengan native speaker dan turis asing yang sering berkunjung ke Jogja
-                  </p>
-                </div>
-              </div>
+              {/* Bagian latihan sama bule dihapus sesuai permintaan */}
             </div>
           </div>
         </div>
-      </section>
+  </section>
+  </Element>
 
       {/* Why Choose Us Cards */}
-     <section id="benefit" name="benefit" className="py-20 px-6 bg-[#FFFFFC]">
+  <section id="benefit-2" className="py-20 px-6 bg-[#FFFFFC]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-4">
             Mengapa Memilih Kampung Inggris Indonesia?
@@ -377,19 +384,19 @@ const Index = () => {
           <p className="text-lg text-muted-foreground text-center mb-16 max-w-3xl mx-auto">
             Kami menyediakan lingkungan pembelajaran yang optimal untuk mengembangkan kemampuan bahasa Inggris Anda
           </p>
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="text-center p-8 hover:shadow-lg transition-all duration-300">
+          <div className="flex flex-nowrap gap-8 overflow-x-auto snap-x snap-mandatory -mx-6 px-6 pb-2 [&::-webkit-scrollbar]:hidden">
+            <Card className="text-center p-8 hover:shadow-lg transition-all duration-300 flex-none w-80 md:w-[360px] lg:w-[380px] snap-start">
               <CardContent className="space-y-4">
                 <div className="bg-accent text-accent-foreground p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center">
                   <Shield className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground">Garansi 1 Bulan Bisa Ngomong</h3>
+                <h3 className="text-xl font-bold text-foreground">Garansi 1 Bulan Bisa Speaking</h3>
                 <p className="text-muted-foreground">
-                  Kalau setelah 1 bulan kamu belum bisa ngomong, garansi uang kembali 100%
+                  Kalau setelah 1 bulan kamu belum bisa speaking, garansi uang kembali 100%
                 </p>
               </CardContent>
             </Card>
-            <Card className="text-center p-8 hover:shadow-lg transition-all duration-300">
+            <Card className="text-center p-8 hover:shadow-lg transition-all duration-300 flex-none w-80 md:w-[360px] lg:w-[380px] snap-start">
               <CardContent className="space-y-4">
                 <div className="bg-accent text-accent-foreground p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center">
                   <Home className="h-8 w-8" />
@@ -400,14 +407,37 @@ const Index = () => {
                 </p>
               </CardContent>
             </Card>
-            <Card className="text-center p-8 hover:shadow-lg transition-all duration-300">
+            <Card className="text-center p-8 hover:shadow-lg transition-all duration-300 flex-none w-80 md:w-[360px] lg:w-[380px] snap-start">
               <CardContent className="space-y-4">
                 <div className="bg-accent text-accent-foreground p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center">
                   <BookOpen className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground">Gratis Modul dan Sertifikat</h3>
+                <h3 className="text-xl font-bold text-foreground">Gratis Modul dan e-sertifikat</h3>
                 <p className="text-muted-foreground">
-                  Modul pembelajaran dan sertifikat sudah disediakan. Langsung dengan tools lengkap untuk belajar
+                  Modul pembelajaran dan e-sertifikat sudah disediakan. Langsung dengan tools lengkap untuk belajar
+                </p>
+              </CardContent>
+            </Card>
+            {/* Tambahan poin benefit */}
+            <Card className="text-center p-8 hover:shadow-lg transition-all duration-300 flex-none w-80 md:w-[360px] lg:w-[380px] snap-start">
+              <CardContent className="space-y-4">
+                <div className="bg-accent text-accent-foreground p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center">
+                  <Users className="h-8 w-8" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground">Daftar 2 GRATIS 1. Daftar 3 GRATIS 2</h3>
+                <p className="text-muted-foreground">
+                  Ajak temanmu, biar lebih seru dan bisa bareng. Lebih banyak, lebih murah.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="text-center p-8 hover:shadow-lg transition-all duration-300 flex-none w-80 md:w-[360px] lg:w-[380px] snap-start">
+              <CardContent className="space-y-4">
+                <div className="bg-accent text-accent-foreground p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center">
+                  <Home className="h-8 w-8" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground">Fasilitas Asrama</h3>
+                <p className="text-muted-foreground">
+                  Free Wifi. Free Air Mineral. Free PDAM. Kitchen set (kulkas, kompor, dll). Spring bed dan linen dengan kualitas villa Kamar Tamu.
                 </p>
               </CardContent>
             </Card>
@@ -416,7 +446,8 @@ const Index = () => {
       </section>
 
   {/* Program Section */}
-<section id="program" name="program" className="py-20 px-6 bg-[#E6D8C4]">
+<Element name="program">
+<section id="program" className="py-20 px-6 bg-[#E6D8C4]">
   <div className="max-w-7xl mx-auto">
     <h2 className="text-3xl md:text-4xl font-bold text-center text-[#5B362B] mb-4">
       Apa Yang Akan Kamu Pelajari?
@@ -429,13 +460,13 @@ const Index = () => {
       {[
         {
           icon: <MessageCircle className="h-6 w-6 text-white" />,
-          title: "Daily Speaking Classes",
-          desc: "Latihan speaking intensif setiap hari lewat role play, dan game. Kamu juga wajib ngomong bahasa Inggris dari bangun tidur sampai tidur lagi."
+          title: "Daily Talk",
+          desc: "Latihan speaking intensif setiap hari lewat role play, dan game. Kamu juga wajib speaking bahasa Inggris dari bangun tidur sampai tidur lagi."
         },
         {
           icon: <BookOpenCheck className="h-6 w-6 text-white" />,
           title: "EC X",
-          desc: "Belajar tampil di depan public, goalnya adalah bagaimana tampil mempesona. Bukan sekadar jago ngomong, tapi juga berdampak."
+          desc: "Belajar tampil di depan public, goalnya adalah bagaimana tampil mempesona. Bukan sekadar jago speaking, tapi juga berdampak."
         },
         {
           icon: <Users className="h-6 w-6 text-white" />,
@@ -468,10 +499,12 @@ const Index = () => {
     </div>
   </div>
 </section>
+</Element>
 
 
   {/* Pricing Section */}
-      <section id="paket" name="paket" className="py-20 bg-[#6D8A59]">
+  <Element name="paket">
+  <section id="paket" className="py-20 bg-[#6D8A59]">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-4">
             Promo Anggakatan Pertama. Diskon 50%!
@@ -481,10 +514,10 @@ const Index = () => {
           </p>
         </div>
           
-          <div className="flex overflow-x-auto gap-6 px-6 pb-4 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden" style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}>
+          <div className="flex overflow-x-auto gap-6 px-6 pb-4 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden">
             {packages.map((pkg, index) => (
               <Card key={index} className="relative bg-[#FAF8F2] rounded-3xl border-none shadow-lg transition-all duration-300 flex-shrink-0 w-80 snap-center">
-                <CardContent className="p-8 text-center flex flex-col h-full">
+                <CardContent className="p-8 pb-10 text-center flex flex-col justify-between h-full">
                   <div className="flex-grow">
                       <h3 className="text-2xl font-bold text-[#3D3D3D] mb-2">{pkg.name}</h3>
                       <p className="text-sm text-gray-500 mb-6 h-10">{pkg.description}</p>
@@ -505,15 +538,27 @@ const Index = () => {
                       </div>
                   </div>
 
-                  <div className="mt-auto space-y-3">
-                      <Button asChild size="lg" className={`w-full rounded-full font-semibold text-base py-6 ${pkg.primaryAction.className}`}>
+                  <div className="mt-auto w-full pt-2 min-h-[140px]">
+                    {pkg.secondaryAction ? (
+                      <div className="flex flex-col items-center justify-end space-y-2 h-full">
+                        <Button asChild size="lg" className={`w-full sm:w-64 md:w-72 rounded-full font-semibold text-base py-6 ${pkg.primaryAction.className}`}>
                           <a href={pkg.primaryAction.link} target="_blank" rel="noopener noreferrer">
-                              {pkg.primaryAction.text}
+                            {pkg.primaryAction.text}
                           </a>
-                      </Button>
-                      <Button size="lg" variant="outline" className={`w-full rounded-full font-semibold text-base py-6 border-2 ${pkg.secondaryAction.className}`}>
+                        </Button>
+                        <Button size="lg" variant="outline" className={`w-full sm:w-64 md:w-72 rounded-full font-semibold text-base py-6 border-2 ${pkg.secondaryAction.className}`}>
                           {pkg.secondaryAction.text}
-                      </Button>
+                        </Button>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col items-center justify-center h-full">
+                        <Button asChild size="lg" className={`w-full sm:w-64 md:w-72 rounded-full font-semibold text-base py-6 ${pkg.primaryAction.className}`}>
+                          <a href={pkg.primaryAction.link} target="_blank" rel="noopener noreferrer">
+                            {pkg.primaryAction.text}
+                          </a>
+                        </Button>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -530,7 +575,8 @@ const Index = () => {
             </Button>
           </div>
         </div>
-      </section>
+  </section>
+  </Element>
 
 
       {/* Footer */}
@@ -582,6 +628,65 @@ const Index = () => {
           </p>
         </div>
       </footer>
+
+      {/* Tooltip bubble next to FAB */}
+      {showWATooltip && !isChatOpen && (
+        <div className="fixed bottom-24 right-6 z-50 select-none pointer-events-none">
+          <div className="relative bg-white text-gray-800 rounded-full shadow px-3 py-1.5 text-sm font-medium">
+            Konsultasi Sekarang!
+            <span className="absolute -right-1 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rotate-45 shadow" />
+          </div>
+        </div>
+      )}
+
+      {/* Chat widget (full on mobile, panel on desktop) */}
+      {isChatOpen && (
+        <>
+          {/* Backdrop */}
+          <div className="fixed inset-0 bg-black/30 z-50" onClick={closeChatWidget} />
+          {/* Panel */}
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="wa-widget-title"
+            className="fixed inset-0 md:inset-auto md:bottom-24 md:right-6 z-[60] w-full h-full md:w-[420px] md:h-[540px] bg-white md:rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+          >
+            <div className="bg-[#25D366] text-white flex items-center justify-between px-4 py-3">
+              <div className="flex items-center gap-2">
+                <MessageCircle className="w-5 h-5 text-white" />
+                <span id="wa-widget-title" className="font-semibold">WhatsApp</span>
+              </div>
+              <button onClick={closeChatWidget} aria-label="Tutup" className="p-1 rounded-full hover:bg-white/10">
+                <X className="w-5 h-5 text-white" />
+              </button>
+            </div>
+            <div className="flex-1 bg-white p-4 overflow-y-auto">
+              <div className="bg-white rounded-2xl ring-1 ring-gray-200 shadow-sm p-4 text-sm text-gray-700 leading-relaxed">
+                Halo! Selamat datang di Kampung Inggris Indonesia. Jika ada pertanyaan tentang PROGRAM dan PROMO, silakan klik tombolnya yaa :)
+              </div>
+            </div>
+            <div className="p-4 bg-white border-t">
+              <Button onClick={openWhatsApp} className="w-full bg-[#25D366] hover:bg-[#1EBE57] text-white rounded-full font-semibold py-6 flex items-center justify-center gap-2 shadow">
+                Tanyakan Sekarang!!
+                <MessageCircle className="w-5 h-5 text-white" />
+              </Button>
+            </div>
+          </div>
+        </>
+      )}
+
+      <a
+        href="https://api.whatsapp.com/send?phone=6282137984673&text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20program%20Kampung%20Inggris%20Indonesia"
+        onClick={handleFABClick}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat via WhatsApp"
+        className="fixed bottom-6 right-6 z-50 group"
+      >
+        <div className="w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-transform group-hover:scale-105 bg-[#25D366]">
+          <MessageCircle className="w-7 h-7 text-white" />
+        </div>
+      </a>
     </div>
   );
 };
