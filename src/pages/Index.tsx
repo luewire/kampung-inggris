@@ -422,7 +422,7 @@ const Index = () => {
                 <div className="bg-accent text-accent-foreground p-4 rounded-full w-16 h-16 mx-auto flex items-center justify-center">
                   <Users className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground">Daftar 2 GRATIS 1. Daftar 3 GRATIS 2</h3>
+                <h3 className="text-xl font-bold text-foreground">Daftar 2 GRATIS 1 <p>Daftar 3 GRATIS 2</p></h3>
                 <p className="text-muted-foreground">
                   Ajak temanmu, biar lebih seru dan bisa bareng. Lebih banyak, lebih murah.
                 </p>
@@ -627,7 +627,6 @@ const Index = () => {
         </div>
       </footer>
 
-  {/* Tooltip removed as requested */}
 
       {/* Chat widget (full on mobile, panel on desktop) */}
       {isChatOpen && (
